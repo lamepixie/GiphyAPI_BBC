@@ -12,7 +12,7 @@ function createButtons() {
         // gives the button the cass of actor
         .addClass("actor")
         // assigns a data name to the button from the array
-        .attr("data-name", actors[i])d 
+        .attr("data-name", actors[i])
         // puts text on the button
         .text(actors[i])
         // sends the button to our alotted div id in the HTML
