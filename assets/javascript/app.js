@@ -63,8 +63,8 @@ function displayGif() {
 
 $(document).ready(function () {
     // function for a user to add their own button into our actors array
-    $("#add-button").click(function (x) {
-        x.preventDefault();
+    $("#add-button").click(function (event) {
+        event.preventDefault();
         // pulls the string input by the user and trims away spaces
         var actor = $("#actor-input").val().trim();
         // clears our text input box
