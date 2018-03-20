@@ -63,8 +63,8 @@ function displayGif() {
 
 $(document).ready(function () {
     // function for a user to add their own button into our actors array
-    $("#add-button").click(function (e) {
-        e.preventDefault();
+    $("#add-button").click(function (x) {
+        x.preventDefault();
         // pulls the string input by the user and trims away spaces
         var actor = $("#actor-input").val().trim();
         // clears our text input box
@@ -74,11 +74,12 @@ $(document).ready(function () {
         // calls the createButtons function to get a new button made so we can query this new string!
         createButtons();
     })
+    // end of function x
+
 
     // calls the function that pulls the gifs from the API once a button has been selected by the user
     $(document).on("click", ".actor", displayGif);
 
     // calls the function to create our buttons on page load
     createButtons();
-
 });
