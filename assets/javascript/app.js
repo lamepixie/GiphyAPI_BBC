@@ -1,6 +1,6 @@
 // our initial array of actor choices
 var actors = ["Rik Mayall","Richard Ayoade","Jennifer Saunders","Noel Fielding","Karl Pilkington"];
-
+var rating = [""]
 // this function will loop through our array, creating a button for every index
 function createButtons() {
     // first we want to empty our div to avoid duplicate buttons
@@ -28,7 +28,7 @@ function displayGif() {
     // grabs our string from the index to query the API
     var actor = $(this).attr("data-name");
     // our API URL
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + actor + "&api_key=PnRghM1fmuk1s4qUMg2O01Cv29hh75B7&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + actor + "&api_key=PnRghM1fmuk1s4qUMg2O01Cv29hh75B7&limit=10&rating=g&&pg-13";
 
     // Ajax to the rescue!
     $.ajax({
@@ -51,7 +51,12 @@ function displayGif() {
         // creates an image tag for each gif
         $("<img>")
         // pulls the src url so the image can be displayed
-        .attr({"src": response.data[i].images.fixed_width.url})
+        .attr({
+            "isStill": "yes",
+            "still": response.data[i].images.original_still.url,
+            "motion": response.data[i].images.original.url,
+            // provides the still gif for display
+            "src": response.data[i].images.original_still.url})
         // assigning it a class
         .addClass("actor-image")
         // sending it into the div we just created above
@@ -60,6 +65,25 @@ function displayGif() {
     })
 };
 // end of our displayGif function
+
+
+function animate() {
+    // if still...
+    if ($(this).attr("isStill") == "yes") {
+        //change the static url to the animated one!
+        $(this).attr("src", $(this).attr("motion"));
+        //change isStill to "no"
+        $(this).attr("isStill", "no");
+    }
+    // else...
+    else {
+        // change it back to still
+        $(this).attr("src", $(this).attr("still"));
+        $(this).attr("isStill", "yes");
+    }
+};
+
+
 
 $(document).ready(function () {
     // function for a user to add their own button into our actors array
@@ -74,11 +98,12 @@ $(document).ready(function () {
         // calls the createButtons function to get a new button made so we can query this new string!
         createButtons();
     })
-    // end of function x
-
 
     // calls the function that pulls the gifs from the API once a button has been selected by the user
     $(document).on("click", ".actor", displayGif);
+
+    // causes the gif to switch urls to the animated one, on click of the img
+    $(document).on("click", ".actor-image", animate);
 
     // calls the function to create our buttons on page load
     createButtons();
