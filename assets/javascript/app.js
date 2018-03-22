@@ -1,6 +1,6 @@
 // our initial array of actor choices
 var actors = ["Rik Mayall","Richard Ayoade","Jennifer Saunders","Noel Fielding","Karl Pilkington"];
-var rating = [""]
+
 // this function will loop through our array, creating a button for every index
 function createButtons() {
     // first we want to empty our div to avoid duplicate buttons
@@ -53,10 +53,10 @@ function displayGif() {
         // pulls the src url so the image can be displayed
         .attr({
             "isStill": "yes",
-            "still": response.data[i].images.original_still.url,
-            "motion": response.data[i].images.original.url,
+            "still": response.data[i].images.fixed_width_still.url,
+            "motion": response.data[i].images.fixed_width.url,
             // provides the still gif for display
-            "src": response.data[i].images.original_still.url})
+            "src": response.data[i].images.fixed_width_still.url})
         // assigning it a class
         .addClass("actor-image")
         // sending it into the div we just created above
@@ -65,7 +65,6 @@ function displayGif() {
     })
 };
 // end of our displayGif function
-
 
 function animate() {
     // if still...
@@ -82,8 +81,6 @@ function animate() {
         $(this).attr("isStill", "yes");
     }
 };
-
-
 
 $(document).ready(function () {
     // function for a user to add their own button into our actors array

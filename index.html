@@ -19,17 +19,29 @@
     </head>
 
     <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header navbar-left">
+                    <a class="navbar-brand">BBC Giphy</a>
+                </div>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="actor-input" placeholder="Add your own BBC actor">
+                    </div>
+                    <button type="submit" id="add-button" value="Add" class="btn btn-default">Add</button>
+                </form>
+            </div>
+        </nav>
 
-        <div id="button-div"></div>
+            <div class="well well-lg">
+                <div id="button-div"></div>
+            </div>
 
-        <form id="actor-form">
-                <label for="actor-input">Add a BBC Actor</label>
-                <input type="text" id="actor-input">
-
-        <input id="add-button" type="submit" value="Add">
-
-        <div id="gif-container"></div>
-
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div id="gif-container"></div>
+            </div>
+        </div>
 
 
          <!-- Link to our Javascript file -->
